@@ -1,7 +1,10 @@
 // Import Styling
 
+import { useState } from "react"
+
 // Color List
 const colorList = [
+    "white",
     "red",
     "blue",
     "green"
@@ -9,25 +12,38 @@ const colorList = [
 
 // Main Page
 export const Main = () => {
+    const [color, setColor] = useState("white")
 
-    const changeBackgroundColor = (color) => {
-        console.log(color)
+    const changeBackgroundColor = (event) => {
+        // Change background color from select option
+        // console.log(event.target.value)
+        setColor(event.target.value)
+        
     }
 
+
     return (
-        <>
+        <div style={{display: "flex", flexDirection: "column", backgroundColor: color, height: "99.56vh", border: "solid"}}>
             {/* // Title */}
             <h1>Papuros</h1>
-            <div style={{display: "flex", flexDirection: "column"}}>
+            <div>
+            <select 
+                id = "colors" 
+                name = "colors" 
+                defaultValue={""}
+                onChange={changeBackgroundColor}
+                >
+                <option value = "" disabled>change background color</option>
             {
-                colorList.map(color => 
-                <p 
+                colorList.map((color, index) => 
+                <option 
                     key = {color}
-                    onClick={() => changeBackgroundColor(color)}
+                    value = {color}
                     >
                     {color}
-                </p>)
+                </option>)
             }
+            </select>
             </div>
            
             
@@ -45,6 +61,6 @@ export const Main = () => {
 
             // About
             // Help */}
-        </>
+        </div>
     )
 }
