@@ -7,9 +7,9 @@ import { BackgroundColor } from "../Components/BackgroundColor"
 // Color List
 const colorList = [
     "white",
+    "black",
+    "gray",
     "red",
-    "blue",
-    "green"
 ]
 
 
@@ -25,30 +25,23 @@ export const BackgroundColorPicker = (props) => {
         <div className = "container" id = "backgroundColorPickerContainer">
             {/* Upper portion of circle */}
             <div className = "halfCircle">
-                
+                {
+                    colorList.map((color, index) => {
+                        console.log(index % 2 === 0)
+                        if (index % 2 === 0) return <BackgroundColor color = {color} />      
+                    })
+                }
             </div>
             {/* Lower portion of circle */}
             <div className = "halfCircle">
-
+            {
+                    colorList.map((color, index) => {
+                        console.log(index % 2 === 0)
+                        if (index % 2 === 1) return <BackgroundColor color = {color} />      
+                    })
+                }
             </div>
 
         </div>
-            // <select 
-            //     id = "colors" 
-            //     name = "colors" 
-            //     defaultValue={""}
-            //     onChange={changeBackgroundColor}
-            //     >
-            //     <option value = "" disabled>change background color</option>
-            // {
-            //     colorList.map((color, index) => 
-            //     <option 
-            //         key = {color}
-            //         value = {color}
-            //         >
-            //         {color}
-            //     </option>)
-            // }
-            // </select>
     )
 }
