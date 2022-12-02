@@ -1,52 +1,18 @@
 // Import Styling
 
 import { useState } from "react"
-
-// Color List
-const colorList = [
-    "white",
-    "red",
-    "blue",
-    "green"
-]
+import { BackgroundColorPicker } from "./BackgroundColorPicker"
 
 // Main Page
 export const Main = () => {
-    const [color, setColor] = useState("white")
-
-    const changeBackgroundColor = (event) => {
-        // Change background color from select option
-        // console.log(event.target.value)
-        setColor(event.target.value)
-        
-    }
-
-
+    const [backgroundColor, setBackgrounColor] = useState("white")
     return (
-        <div style={{display: "flex", flexDirection: "column", backgroundColor: color, height: "99.56vh", border: "solid"}}>
+        <div style={{display: "flex", flexDirection: "column", backgroundColor: backgroundColor, height: "99.56vh", border: "solid"}}>
             {/* // Title */}
             <h1>Papuros</h1>
-            <div>
-            <select 
-                id = "colors" 
-                name = "colors" 
-                defaultValue={""}
-                onChange={changeBackgroundColor}
-                >
-                <option value = "" disabled>change background color</option>
-            {
-                colorList.map((color, index) => 
-                <option 
-                    key = {color}
-                    value = {color}
-                    >
-                    {color}
-                </option>)
-            }
-            </select>
-            </div>
-           
-            
+            <BackgroundColorPicker 
+                setBackgrounColor = {setBackgrounColor}
+            />
             {/* // Background
             // Notes List
             // Add Notes Container
