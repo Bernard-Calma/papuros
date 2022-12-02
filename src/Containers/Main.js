@@ -1,11 +1,21 @@
 // Import Styling
+import WebFont from "webfontloader"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BackgroundColorPicker } from "./BackgroundColorPicker"
 
 // Main Page
 export const Main = () => {
     const [backgroundColor, setBackgrounColor] = useState("white")
+
+    useEffect(() => {
+        WebFont.load({
+            google: {
+                families: ['Nerko One', 'Nabla', "My Soul", 'Rubik Puddles', "Grape Nuts", 'Twinkle Star']
+            }
+        })
+    })
+
     return (
         <div style={{display: "flex", flexDirection: "column", backgroundColor: backgroundColor, height: "99.56vh", border: "solid"}}>
             {/* // Title */}
