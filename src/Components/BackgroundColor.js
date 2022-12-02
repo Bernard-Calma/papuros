@@ -9,6 +9,7 @@ export const BackgroundColor = (props) =>{
                 width: "100%",
                 backgroundColor: props.color,
             }}
+            onClick = {() => props.changeBackgroundColor()}
         >
         </div>
         </>

@@ -15,10 +15,10 @@ const colorList = [
 
 export const BackgroundColorPicker = (props) => {
 
-    const changeBackgroundColor = (event) => {
+    const changeBackgroundColor = (color) => {
         // Change background color from select option
-        // console.log(event.target.value)
-        props.setBackgrounColor(event.target.value)
+        // console.log(color)
+        props.setBackgrounColor(color)
         
     }
     return(
@@ -27,8 +27,10 @@ export const BackgroundColorPicker = (props) => {
             <div className = "halfCircle">
                 {
                     colorList.map((color, index) => {
-                        console.log(index % 2 === 0)
-                        if (index % 2 === 0) return <BackgroundColor color = {color} />      
+                        if (index % 2 === 0) return <BackgroundColor 
+                            color = {color} 
+                            changeBackgroundColor = {() => changeBackgroundColor(color)}
+                        />      
                     })
                 }
             </div>
@@ -36,8 +38,10 @@ export const BackgroundColorPicker = (props) => {
             <div className = "halfCircle">
             {
                     colorList.map((color, index) => {
-                        console.log(index % 2 === 0)
-                        if (index % 2 === 1) return <BackgroundColor color = {color} />      
+                        if (index % 2 === 1) return <BackgroundColor 
+                            color = {color} 
+                            changeBackgroundColor = {() => changeBackgroundColor(color)}
+                            />      
                     })
                 }
             </div>
