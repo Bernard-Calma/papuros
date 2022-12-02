@@ -39,13 +39,23 @@
 
 /* Main Container */
 
+/* Header Container*/
+.nav {
+  display: flex;
+}
+
+/* Title */
+#title {
+  margin: 0;
+}
+
 /* Background Color Picker Container */
 #backgroundColorPickerContainer {
   width: 3vh;
   height: 3vh;
-  border: 1px solid black;
   border-radius: 80px;
   overflow: hidden;
+  margin: 10px 0 0 10px
 }
 
 /* Upper Circle Portion */

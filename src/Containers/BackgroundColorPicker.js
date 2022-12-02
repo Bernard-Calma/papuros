@@ -7,9 +7,9 @@ import { BackgroundColor } from "../Components/BackgroundColor"
 // Color List
 const colorList = [
     "white",
-    "black",
+    "orange",
     "gray",
-    "red",
+    "violet",
 ]
 
 

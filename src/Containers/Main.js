@@ -9,10 +9,14 @@ export const Main = () => {
     return (
         <div style={{display: "flex", flexDirection: "column", backgroundColor: backgroundColor, height: "99.56vh", border: "solid"}}>
             {/* // Title */}
-            <h1>Papuros</h1>
-            <BackgroundColorPicker 
-                setBackgrounColor = {setBackgrounColor}
-            />
+            <div className = "nav">
+                
+                <BackgroundColorPicker 
+                    setBackgrounColor = {setBackgrounColor}
+                />
+            </div>
+                <h1 id="title">Papuros</h1>
+            
             {/* // Background
             // Notes List
             // Add Notes Container
