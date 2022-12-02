@@ -2,6 +2,8 @@ import { useState } from "react"
 
 import "../App.css"
 
+import { BackgroundColor } from "../Components/BackgroundColor"
+
 // Color List
 const colorList = [
     "white",
@@ -20,33 +22,33 @@ export const BackgroundColorPicker = (props) => {
         
     }
     return(
-        <div>
-            <div className = "container" id = "backgroundColorPickerContainer">
-                {
-                    colorList.map((color, index) => 
-                    <div 
-                        style = {{backgroundColor: {color}, height: 10, width: 10}}
-                        >
-                    </div>)
-                }
+        <div className = "container" id = "backgroundColorPickerContainer">
+            {/* Upper portion of circle */}
+            <div className = "halfCircle">
+                
             </div>
-            <select 
-                id = "colors" 
-                name = "colors" 
-                defaultValue={""}
-                onChange={changeBackgroundColor}
-                >
-                <option value = "" disabled>change background color</option>
-            {
-                colorList.map((color, index) => 
-                <option 
-                    key = {color}
-                    value = {color}
-                    >
-                    {color}
-                </option>)
-            }
-            </select>
+            {/* Lower portion of circle */}
+            <div className = "halfCircle">
+
+            </div>
+
         </div>
+            // <select 
+            //     id = "colors" 
+            //     name = "colors" 
+            //     defaultValue={""}
+            //     onChange={changeBackgroundColor}
+            //     >
+            //     <option value = "" disabled>change background color</option>
+            // {
+            //     colorList.map((color, index) => 
+            //     <option 
+            //         key = {color}
+            //         value = {color}
+            //         >
+            //         {color}
+            //     </option>)
+            // }
+            // </select>
     )
 }
