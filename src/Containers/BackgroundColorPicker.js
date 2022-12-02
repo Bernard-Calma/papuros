@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import "../App.css"
+
 // Color List
 const colorList = [
     "white",
@@ -19,6 +21,15 @@ export const BackgroundColorPicker = (props) => {
     }
     return(
         <div>
+            <div className = "container" id = "backgroundColorPickerContainer">
+                {
+                    colorList.map((color, index) => 
+                    <div 
+                        style = {{backgroundColor: {color}, height: 10, width: 10}}
+                        >
+                    </div>)
+                }
+            </div>
             <select 
                 id = "colors" 
                 name = "colors" 
