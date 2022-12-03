@@ -1,6 +1,6 @@
 import "../App.css"
 
-import { BackgroundColor } from "../Components/BackgroundColor"
+import  BackgroundColor  from "../Components/BackgroundColor"
 
 // Color List
 const colorList = [
@@ -11,7 +11,7 @@ const colorList = [
 ]
 
 
-export const BackgroundColorPicker = (props) => {
+const BackgroundColorPicker = (props) => {
 
     const changeBackgroundColor = (color) => {
         // Change background color from select option
@@ -51,3 +51,5 @@ export const BackgroundColorPicker = (props) => {
         </div>
     )
 }
+
+export default BackgroundColorPicker

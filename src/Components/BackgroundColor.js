@@ -1,6 +1,6 @@
 import "../App.css"
 
-export const BackgroundColor = (props) =>{
+const BackgroundColor = (props) =>{
     return(
         <>
         <div id = "backgroundColor"
@@ -15,3 +15,5 @@ export const BackgroundColor = (props) =>{
         </>
     )
 }
+
+export default BackgroundColor

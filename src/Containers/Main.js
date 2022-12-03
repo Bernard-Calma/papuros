@@ -2,7 +2,7 @@
 import WebFont from "webfontloader"
 
 import { useEffect, useState } from "react"
-import { BackgroundColorPicker } from "./BackgroundColorPicker"
+import BackgroundColorPicker from "./BackgroundColorPicker"
 
 // Main Page
 export const Main = () => {
@@ -15,6 +15,11 @@ export const Main = () => {
             backgroundColor: backgroundColor,
             height: "99.56vh",
             border: "solid"
+        },
+        mainContainer: {
+            border: "solid 1px",
+            display: "flex",
+
         }
     }
 
@@ -37,7 +42,7 @@ export const Main = () => {
             </div>
             <h1 id="title">Papuros</h1>
             {/* Main Container */}
-            <div>
+            <div style = {style.mainContainer}>
 
             </div>
             
