@@ -8,6 +8,16 @@ import { BackgroundColorPicker } from "./BackgroundColorPicker"
 export const Main = () => {
     const [backgroundColor, setBackgrounColor] = useState("white")
 
+    const style = {
+        container: {
+            display: "flex",
+            flexDirection: "column",
+            backgroundColor: backgroundColor,
+            height: "99.56vh",
+            border: "solid"
+        }
+    }
+
     useEffect(() => {
         WebFont.load({
             google: {
@@ -17,7 +27,7 @@ export const Main = () => {
     })
 
     return (
-        <div style={{display: "flex", flexDirection: "column", backgroundColor: backgroundColor, height: "99.56vh", border: "solid"}}>
+        <div style={style.container}>
             {/* // Title */}
             <div className = "nav">
                 
@@ -25,7 +35,11 @@ export const Main = () => {
                     setBackgrounColor = {setBackgrounColor}
                 />
             </div>
-                <h1 id="title">Papuros</h1>
+            <h1 id="title">Papuros</h1>
+            {/* Main Container */}
+            <div>
+
+            </div>
             
             {/* // Background
             // Notes List
@@ -44,3 +58,5 @@ export const Main = () => {
         </div>
     )
 }
+
+
