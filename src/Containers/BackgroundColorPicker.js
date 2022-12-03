@@ -1,5 +1,3 @@
-import { useState } from "react"
-
 import "../App.css"
 
 import { BackgroundColor } from "../Components/BackgroundColor"
@@ -26,12 +24,13 @@ export const BackgroundColorPicker = (props) => {
             {/* Upper portion of circle */}
             <div className = "halfCircle">
                 {
-                    colorList.map((color, index) => {
-                        if (index % 2 === 0) return <BackgroundColor 
+                    colorList.map((color, index) => index % 2 === 0 ? 
+                        <BackgroundColor 
                             color = {color} 
                             changeBackgroundColor = {() => changeBackgroundColor(color)}
-                        />      
-                    })
+                        />   
+                        :<></>   
+                    )
                 }
             </div>
             {/* Lower portion of circle */}
