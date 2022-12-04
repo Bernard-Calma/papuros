@@ -1,7 +1,8 @@
 import { useState } from "react"
 
 const Note = (props) => {
-    console.log("Props", props)
+    // Fix resize is going overlimit on diagonal
+    // Fix whole component to be customized
     const maxWidth = props.maxDims.width - 10
     const maxHeight = props.maxDims.height - 20
     const style = {

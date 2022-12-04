@@ -4,15 +4,16 @@ import WebFont from "webfontloader"
 import { useEffect, useRef, useState } from "react"
 import BackgroundColorPicker from "./BackgroundColorPicker"
 import Note from "../Components/Note"
+import NavBar from "../Components/NavBar"
 
 // Main Page
 export const Main = () => {
+    // Variables for Styling
     const [backgroundColor, setBackgrounColor] = useState("white")
     const [maxDims, setMaxDims] = useState({
         width: window.innerWidth -50,
         height: window.innerHeight - 150
     })
-    
     const style = {
         container: {
             // display: "flex",
@@ -25,12 +26,24 @@ export const Main = () => {
         mainContainer: {
             height: maxDims.height,
             width: maxDims.width,
-            border: "solid 1px red",
+            // border: "solid 1px red",
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "start",
-            margin: 5
+            margin: 5,
+            overflow: "auto"
         }
+    }
+
+    // Variables for Notes
+    const [notes, setNotes] = useState([])
+    
+    const addNote = () => {
+        setNotes([...notes, {
+            id: notes.length + 1,
+            content: ""
+        }])
+        console.log("note added")
     }
 
     useEffect(() => {
@@ -41,11 +54,12 @@ export const Main = () => {
         })
     })
 
+
+    console.log("Notes", notes)
     return (
         <div style={style.container} >
             {/* // Title */}
             <div className = "nav">
-                
                 <BackgroundColorPicker 
                     setBackgrounColor = {setBackgrounColor}
                 />
@@ -53,8 +67,16 @@ export const Main = () => {
             <h1 id="title">Papuros</h1>
             {/* Main Container */}
             <div style = {style.mainContainer}>
+                <NavBar 
+                    addNote = {addNote}
+                />
                 <Note maxDims = {maxDims}/>
                 <Note maxDims = {maxDims}/>
+                {
+                    notes.map((note) => {
+                        return <textarea></textarea>
+                    })
+                }
             </div>
             
             {/* // Background
