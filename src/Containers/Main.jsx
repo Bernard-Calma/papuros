@@ -4,7 +4,7 @@ import WebFont from "webfontloader"
 import { useEffect, useRef, useState } from "react"
 import BackgroundColorPicker from "./BackgroundColorPicker"
 import Note from "../Components/Note"
-import NavBar from "../Components/NavBar"
+import NavBar from "./NavBar"
 
 // Main Page
 export const Main = () => {
@@ -43,7 +43,7 @@ export const Main = () => {
             id: notes.length + 1,
             content: ""
         }])
-        console.log("note added")
+        // console.log("note added")
     }
 
     useEffect(() => {
@@ -72,7 +72,6 @@ export const Main = () => {
                 <NavBar 
                     addNote = {addNote}
                 />
-                <Note maxDims = {maxDims}/>
                 {
                     // Notes List
                     notes.map((note) => {
