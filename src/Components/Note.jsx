@@ -64,7 +64,9 @@ const Note = (props) => {
             {/* Note menu */}
             <div style = {styles.noteMenu}>
                 <p style = {styles.menu}>-</p>
-                <p style = {styles.menu}>x</p>
+                <p style = {styles.menu}
+                    onClick = {props.removeNote}
+                >x</p>
             </div>
             <textarea 
                 style={ styles.textArea }

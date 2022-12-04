@@ -46,6 +46,11 @@ export const Main = () => {
         // console.log("note added")
     }
 
+    const removeNote = (id) => {
+
+        setNotes(notes.filter((notes) => notes.id !== id))
+    }
+
     useEffect(() => {
         WebFont.load({
             google: {
@@ -76,7 +81,10 @@ export const Main = () => {
                     // Notes List
                     notes.map((note) => {
                         // Notes Container
-                        return <Note maxDims = {maxDims}/>
+                        return <Note 
+                            maxDims = {maxDims}
+                            removeNote = {()=>removeNote(note.id)}
+                            />
                     })
                 }
             </div>
