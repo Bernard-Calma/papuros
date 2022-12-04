@@ -58,12 +58,14 @@ export const Main = () => {
     console.log("Notes", notes)
     return (
         <div style={style.container} >
-            {/* // Title */}
+            
             <div className = "nav">
+                {/* Change background color */}
                 <BackgroundColorPicker 
                     setBackgrounColor = {setBackgrounColor}
                 />
             </div>
+            {/* Title */}
             <h1 id="title">Papuros</h1>
             {/* Main Container */}
             <div style = {style.mainContainer}>
@@ -72,24 +74,20 @@ export const Main = () => {
                 />
                 <Note maxDims = {maxDims}/>
                 {
+                    // Notes List
                     notes.map((note) => {
+                        // Notes Container
                         return <Note maxDims = {maxDims}/>
                     })
                 }
             </div>
             
             {/* // Background
-            // Notes List
-            // Add Notes Container
             // Delete Notes Container
             // Minimize Notes Container
             // Hide Notes Container
-            // Notes Container
             // Change Font Color
-            // Change Notes Container Size
             // Change Notes Container Color
-            // Change background color
-
             // About
             // Help */}
         </div>

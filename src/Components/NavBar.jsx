@@ -41,6 +41,7 @@ const NavBar = (props) => {
         <div style={showNav? style.sideNav: style.container} onClick = {openSideNav}>
             {
                showNav &&
+               // Add Notes Container
                 <p onClick={props.addNote}>+</p>
             }
         </div>
