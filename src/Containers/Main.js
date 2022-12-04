@@ -1,25 +1,35 @@
 // Import Styling
 import WebFont from "webfontloader"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import BackgroundColorPicker from "./BackgroundColorPicker"
+import Note from "../Components/Note"
 
 // Main Page
 export const Main = () => {
     const [backgroundColor, setBackgrounColor] = useState("white")
-
+    const [maxDims, setMaxDims] = useState({
+        width: window.innerWidth -50,
+        height: window.innerHeight - 150
+    })
+    
     const style = {
         container: {
-            display: "flex",
-            flexDirection: "column",
+            // display: "flex",
+            // flexDirection: "column",
             backgroundColor: backgroundColor,
-            height: "99.56vh",
+            // height: "99.56vh",
+            height: "98vh",
             border: "solid"
         },
         mainContainer: {
-            border: "solid 1px",
+            height: maxDims.height,
+            width: maxDims.width,
+            border: "solid 1px red",
             display: "flex",
-
+            flexWrap: "wrap",
+            justifyContent: "start",
+            margin: 5
         }
     }
 
@@ -32,7 +42,7 @@ export const Main = () => {
     })
 
     return (
-        <div style={style.container}>
+        <div style={style.container} >
             {/* // Title */}
             <div className = "nav">
                 
@@ -43,7 +53,8 @@ export const Main = () => {
             <h1 id="title">Papuros</h1>
             {/* Main Container */}
             <div style = {style.mainContainer}>
-
+                <Note maxDims = {maxDims}/>
+                <Note maxDims = {maxDims}/>
             </div>
             
             {/* // Background
