@@ -71,10 +71,9 @@ export const Main = () => {
                     addNote = {addNote}
                 />
                 <Note maxDims = {maxDims}/>
-                <Note maxDims = {maxDims}/>
                 {
                     notes.map((note) => {
-                        return <textarea></textarea>
+                        return <Note maxDims = {maxDims}/>
                     })
                 }
             </div>

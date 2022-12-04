@@ -12,6 +12,11 @@ const Note = (props) => {
             maxHeight: maxHeight,
             height: 200,
             width: 100,
+            borderColor: "black",
+            borderWidth: 3,
+            borderRadius: 20,
+            paddingTop: 5,
+            paddingLeft: 8
         }
     }
     return(

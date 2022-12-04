@@ -35,7 +35,7 @@ const NavBar = (props) => {
     }
 
     const openSideNav = () => {
-        setShowNav(true)
+        setShowNav(!showNav)
     }
     return(
         <div style={showNav? style.sideNav: style.container} onClick = {openSideNav}>
