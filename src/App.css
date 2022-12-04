@@ -71,3 +71,18 @@
 #backgroundColorComponent {
   border: 1px solid black
 }
+
+/* TextArea */
+textarea::-webkit-scrollbar {
+  display: inline;
+}
+textarea {
+  border: 6px;
+  padding-left: 5px;
+}
+
+textarea:focus { 
+  outline: none !important;
+  border-color: black;
+  box-shadow: 0 0 10px rgb(255, 255, 0);
+}

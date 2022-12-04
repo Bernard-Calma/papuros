@@ -90,7 +90,6 @@ export const Main = () => {
             </div>
             
             {/* // Background
-            // Delete Notes Container
             // Minimize Notes Container
             // Hide Notes Container
             // Change Font Color

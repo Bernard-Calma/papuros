@@ -1,10 +1,18 @@
 import { useState, useRef } from "react"
+import "../App.css"
 
 const Note = (props) => {
     // Fix resize is going overlimit on diagonal
     // Fix whole component to be customized
     const maxWidth = props.maxDims.width - 10
     const maxHeight = props.maxDims.height - 20
+
+    const noteRef = useRef()
+    const [noteDims, setNoteDims] = useState({
+        // height: noteRef.current.style.height,
+        // width: noteRef.current.style.width
+    })
+
     const styles = {
         container: {
             margin: 5,
@@ -25,52 +33,59 @@ const Note = (props) => {
             margin: 10,
         },
         noteMenu: {
-            // backgroundColor: "gray",
-            // borderBottom: "solid",
-            // borderColor: "black",
-            borderWidth: 0.5,
-            width: 110,
-            height: 20,
             display: "flex",
-            maringTop: -10,
-            position: "absolute"
-            
-            
+            justifyContent: "space-evenly",
+            backgroundColor: "#f2eb11",
+            border: "solid",
+            height: 20,
+            paddingBottom: 5,
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
         },
         menu: {
-            margin: 0,
-            marginLeft: 5,
-            marginRight: 5,
-            paddingLeft: 5,
-            // border: "solid",
-            borderWidth: 0.5,
-            fontSize: "larger",
-            fontWeight: 500,
-            fontFamily: "My Soul"
+            fontSize: 20,
+            fontFamily: "My Soul",
+            backgroundColor: "#f2eb11",
+            marginTop: 0,
         },
         textArea: {
             backgroundColor: "#f2eb11",
-            paddingTop: 30,
-            borderRadius: 20,
+            borderBottomLeftRadius: 20,
+            borderBottomRightRadius: 20,
+            border: "solid",
+            borderTop: "none",
             minWidth: 100,
             minHeight: 100,
+            overflowY: "scroll",
         },
         
     }
+
+
+    const minimizeNote = () => {
+        noteRef.current.style.width = "100px"
+        noteRef.current.style.height = "100px"
+    }
+    
     return(
         // Change Notes Container Size
         // <textarea style = {style.container} ref = {props.noteRef}></textarea>
         <div style={ styles.noteContainer}>
             {/* Note menu */}
             <div style = {styles.noteMenu}>
-                <p style = {styles.menu}>-</p>
+                <p style = {styles.menu}
+                    onClick = {minimizeNote}
+                >-</p>
+                {/* Delete Notes Container */}
                 <p style = {styles.menu}
                     onClick = {props.removeNote}
                 >x</p>
             </div>
+                
+       
             <textarea 
                 style={ styles.textArea }
-
+                ref = {noteRef}
             ></textarea>
         </div>
     )
