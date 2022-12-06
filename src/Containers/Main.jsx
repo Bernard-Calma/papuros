@@ -52,6 +52,17 @@ export const Main = () => {
         setNotes(notes.filter((notes) => notes.id !== id))
     }
 
+    const minimizeNote = (id) => {
+        // console.log("Minimize Note")
+        let notesToEdit = [...notes]
+        // console.log("Notes to Edit", notesToEdit)
+        for (let note of notesToEdit) 
+            if (note.id === id) {
+                note.minimized = true
+            }
+        setNotes(notesToEdit)
+    }
+    
     useEffect(() => {
         WebFont.load({
             google: {
@@ -83,8 +94,11 @@ export const Main = () => {
                     notes.map((note) => {
                         // Notes Container
                         return <Note 
+                            key = {note.id}
+                            note = {note}
                             maxDims = {maxDims}
                             removeNote = {()=>removeNote(note.id)}
+                            minimizeNote = {() => minimizeNote(note.id)}
                             />
                     })
                 }

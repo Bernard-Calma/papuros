@@ -63,8 +63,9 @@ const Note = (props) => {
 
 
     const minimizeNote = () => {
-        noteRef.current.style.width = "100px"
-        noteRef.current.style.height = "100px"
+        // This makes the note size to default
+        // noteRef.current.style.width = "100px"
+        // noteRef.current.style.height = "100px"
     }
     
     return(
@@ -74,7 +75,7 @@ const Note = (props) => {
             {/* Note menu */}
             <div style = {styles.noteMenu}>
                 <p style = {styles.menu}
-                    onClick = {minimizeNote}
+                    onClick = {props.minimizeNote}
                 >-</p>
                 {/* Delete Notes Container */}
                 <p style = {styles.menu}
