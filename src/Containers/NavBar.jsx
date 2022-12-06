@@ -40,12 +40,18 @@ const NavBar = (props) => {
     const openSideNav = () => {
         setShowNav(!showNav)
     }
+
+    const addNote = () => {
+        props.addNote()
+        openSideNav()
+    }
+
     return(
         <div style={showNav? style.sideNav: style.container} onClick = {openSideNav}>
             {
                showNav &&
                // Add Notes Container
-                <p onClick={props.addNote}>+</p>
+                <p onClick={addNote}>+</p>
             }
         </div>
     )
