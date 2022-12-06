@@ -1,4 +1,5 @@
 import { useState } from "react"
+import MinimizedNote from "../Components/MinimizedNote"
 
 const NavBar = (props) => {
 
@@ -51,7 +52,11 @@ const NavBar = (props) => {
             {
                showNav &&
                // Add Notes Container
+               <>
                 <p onClick={addNote}>+</p>
+                <MinimizedNote />
+               </>
+                
             }
         </div>
     )

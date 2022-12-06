@@ -41,7 +41,8 @@ export const Main = () => {
     const addNote = () => {
         setNotes([...notes, {
             id: notes.length + 1,
-            content: ""
+            content: "",
+            minimized: false
         }])
         // console.log("note added")
     }
