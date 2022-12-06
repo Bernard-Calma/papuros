@@ -54,7 +54,16 @@ const NavBar = (props) => {
                // Add Notes Container
                <>
                 <p onClick={addNote}>+</p>
-                <MinimizedNote />
+                    {
+                        props.notes.map( (note) => 
+                            note.minimized ? 
+                            <MinimizedNote 
+                                note = {note}
+                                minimizeNote = { () => props.minimizeNote(note.id)}
+                            />
+                            : <></>
+                        )
+                    }
                </>
                 
             }

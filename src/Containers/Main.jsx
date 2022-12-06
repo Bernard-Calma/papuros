@@ -53,12 +53,12 @@ export const Main = () => {
     }
 
     const minimizeNote = (id) => {
-        // console.log("Minimize Note")
+        console.log("Minimize Note")
         let notesToEdit = [...notes]
         // console.log("Notes to Edit", notesToEdit)
         for (let note of notesToEdit) 
             if (note.id === id) {
-                note.minimized = true
+                note.minimized = !note.minimized
             }
         setNotes(notesToEdit)
     }
@@ -87,20 +87,24 @@ export const Main = () => {
             {/* Main Container */}
             <div style = {style.mainContainer}>
                 <NavBar 
+                    notes = {notes}
                     addNote = {addNote}
+                    minimizeNote = {minimizeNote}
                 />
                 {
                     // Notes List
-                    notes.map((note) => {
+                    notes.map((note) => 
                         // Notes Container
-                        return <Note 
-                            key = {note.id}
-                            note = {note}
-                            maxDims = {maxDims}
-                            removeNote = {()=>removeNote(note.id)}
-                            minimizeNote = {() => minimizeNote(note.id)}
+                        !note.minimized ?
+                            <Note 
+                                key = {note.id}
+                                note = {note}
+                                maxDims = {maxDims}
+                                removeNote = {()=>removeNote(note.id)}
+                                minimizeNote = {() => minimizeNote(note.id)}
                             />
-                    })
+                        : <></>
+                    )
                 }
             </div>
             

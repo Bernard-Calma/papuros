@@ -10,7 +10,10 @@ const MinimizedNote = (props) => {
     }
 
     return(
-        <div style = {Styles.container}>
+        <div 
+            style = {Styles.container} 
+            onClick = {props.minimizeNote}
+            >
             <p></p>
         </div>
     )
