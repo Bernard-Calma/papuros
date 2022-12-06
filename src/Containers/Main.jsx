@@ -39,12 +39,12 @@ export const Main = () => {
     const [notes, setNotes] = useState([])
     
     const addNote = () => {
+        // Add note , need to change this to more specific ID
         setNotes([...notes, {
             id: notes.length + 1,
             content: "",
             minimized: false
         }])
-        // console.log("note added")
     }
 
     const removeNote = (id) => {
@@ -57,16 +57,9 @@ export const Main = () => {
         setNotes(notes.map((note) => note.id === noteToEdit.id ? {...noteToEdit, minimized: !noteToEdit.minimized} : note))
     }
 
-    // const updateNote = (id) => {
-    //     console.log("Minimize Note")
-    //     let notesToEdit = [...notes]
-    //     // console.log("Notes to Edit", notesToEdit)
-    //     for (let note of notesToEdit) 
-    //         if (note.id === id) {
-    //             note.minimized = !note.minimized
-    //         }
-    //     setNotes(notesToEdit)
-    // }
+    const updateNote = (noteToEdit) => {
+        setNotes(notes.map((note) => note.id === noteToEdit.id ? {...noteToEdit, content: noteToEdit.content} : note))
+    }
     
     useEffect(() => {
         WebFont.load({
@@ -76,8 +69,6 @@ export const Main = () => {
         })
     })
 
-
-    console.log("Notes", notes)
     return (
         <div style={style.container} >
             
@@ -107,6 +98,7 @@ export const Main = () => {
                                 maxDims = {maxDims}
                                 removeNote = {()=>removeNote(note.id)}
                                 minimizeNote = {minimizeNote}
+                                updateNote = {updateNote}
                             />
                         : <></>
                     )

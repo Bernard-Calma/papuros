@@ -9,12 +9,12 @@ const Note = (props) => {
 
     const noteRef = useRef()
     const [noteDims, setNoteDims] = useState({
+        // This should hold the dimensions for the note
         // height: noteRef.current.style.height,
         // width: noteRef.current.style.width
     })
-
     const [noteHolder , setNoteHolder] = useState(props.note)
-    console.log("Note Holder", noteHolder)
+
     const styles = {
         container: {
             margin: 5,
@@ -63,15 +63,11 @@ const Note = (props) => {
         
     }
 
-
-    const minimizeNote = () => {
-        // This makes the note size to default
-        // noteRef.current.style.width = "100px"
-        // noteRef.current.style.height = "100px"
-    }
-
     const handleChange = (event) => {
+        // Set changed to note holder first
         setNoteHolder({...noteHolder, content: event.target.value})
+        // Then call udpate function to update whole array of notes.
+        props.updateNote(noteHolder)
     }
     
     return(
