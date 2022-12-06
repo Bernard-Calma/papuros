@@ -13,6 +13,8 @@ const Note = (props) => {
         // width: noteRef.current.style.width
     })
 
+    const [noteHolder , setNoteHolder] = useState(props.note)
+    console.log("Note Holder", noteHolder)
     const styles = {
         container: {
             margin: 5,
@@ -67,6 +69,10 @@ const Note = (props) => {
         // noteRef.current.style.width = "100px"
         // noteRef.current.style.height = "100px"
     }
+
+    const handleChange = (event) => {
+        setNoteHolder({...noteHolder, content: event.target.value})
+    }
     
     return(
         // Change Notes Container Size
@@ -87,6 +93,8 @@ const Note = (props) => {
             <textarea 
                 style={ styles.textArea }
                 ref = {noteRef}
+                value = {noteHolder.content}
+                onChange = {handleChange}
             ></textarea>
         </div>
     )

@@ -54,6 +54,7 @@ export const Main = () => {
 
     const minimizeNote = (id) => {
         console.log("Minimize Note")
+        // setNotes(notes.map((note) => note.id === noteToEdit.id ? {...note, minimized: !minimized}))
         let notesToEdit = [...notes]
         // console.log("Notes to Edit", notesToEdit)
         for (let note of notesToEdit) 
@@ -62,6 +63,17 @@ export const Main = () => {
             }
         setNotes(notesToEdit)
     }
+
+    // const updateNote = (id) => {
+    //     console.log("Minimize Note")
+    //     let notesToEdit = [...notes]
+    //     // console.log("Notes to Edit", notesToEdit)
+    //     for (let note of notesToEdit) 
+    //         if (note.id === id) {
+    //             note.minimized = !note.minimized
+    //         }
+    //     setNotes(notesToEdit)
+    // }
     
     useEffect(() => {
         WebFont.load({
