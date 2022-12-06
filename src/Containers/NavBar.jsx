@@ -59,7 +59,7 @@ const NavBar = (props) => {
                             note.minimized ? 
                             <MinimizedNote 
                                 note = {note}
-                                minimizeNote = { () => props.minimizeNote(note.id)}
+                                minimizeNote = { () => props.minimizeNote(note)}
                             />
                             : <></>
                         )

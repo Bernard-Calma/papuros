@@ -48,20 +48,13 @@ export const Main = () => {
     }
 
     const removeNote = (id) => {
-
+        // Filter notes and return all notes that does not have the same ID with the parameter
         setNotes(notes.filter((notes) => notes.id !== id))
     }
 
-    const minimizeNote = (id) => {
-        console.log("Minimize Note")
-        // setNotes(notes.map((note) => note.id === noteToEdit.id ? {...note, minimized: !minimized}))
-        let notesToEdit = [...notes]
-        // console.log("Notes to Edit", notesToEdit)
-        for (let note of notesToEdit) 
-            if (note.id === id) {
-                note.minimized = !note.minimized
-            }
-        setNotes(notesToEdit)
+    const minimizeNote = (noteToEdit) => {
+        // console.log("Minimize Note")
+        setNotes(notes.map((note) => note.id === noteToEdit.id ? {...noteToEdit, minimized: !noteToEdit.minimized} : note))
     }
 
     // const updateNote = (id) => {
@@ -113,7 +106,7 @@ export const Main = () => {
                                 note = {note}
                                 maxDims = {maxDims}
                                 removeNote = {()=>removeNote(note.id)}
-                                minimizeNote = {() => minimizeNote(note.id)}
+                                minimizeNote = {minimizeNote}
                             />
                         : <></>
                     )

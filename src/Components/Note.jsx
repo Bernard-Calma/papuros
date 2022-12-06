@@ -81,7 +81,7 @@ const Note = (props) => {
             {/* Note menu */}
             <div style = {styles.noteMenu}>
                 <p style = {styles.menu}
-                    onClick = {props.minimizeNote}
+                    onClick = {() => props.minimizeNote(noteHolder)}
                 >-</p>
                 {/* Delete Notes Container */}
                 <p style = {styles.menu}
