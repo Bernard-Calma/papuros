@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useState, useRef } from "react"
 import "../App.css"
 
@@ -8,11 +9,7 @@ const Note = (props) => {
     const maxHeight = props.maxDims.height - 20
 
     const noteRef = useRef()
-    const [noteDims, setNoteDims] = useState({
-        // This should hold the dimensions for the note
-        // height: noteRef.current.style.height,
-        // width: noteRef.current.style.width
-    })
+    
     const [noteHolder , setNoteHolder] = useState(props.note)
 
     const styles = {
@@ -26,13 +23,14 @@ const Note = (props) => {
             borderWidth: 3,
             borderRadius: 20,
             paddingTop: 5,
-            paddingLeft: 8
+            paddingLeft: 8,
         },
         noteContainer: {
             borderColor: "black",
             borderWidth: 1,
             height: 100,
             margin: 10,
+
         },
         noteMenu: {
             display: "flex",
@@ -59,17 +57,23 @@ const Note = (props) => {
             minWidth: 100,
             minHeight: 100,
             overflowY: "scroll",
+            height: props.note.height,
+            width: props.note.width,
         },
         
     }
 
     const handleChange = (event) => {
         // Set changed to note holder first
-        setNoteHolder({...noteHolder, content: event.target.value})
+        setNoteHolder({...noteHolder, content: event.target.value, height: noteRef.current.clientHeight, width: noteRef.current.clientWidth})
         // Then call udpate function to update whole array of notes.
         props.updateNote(noteHolder)
+        console.log(props.note)
     }
-    
+
+    const handleResize = () => {
+        setNoteHolder({...noteHolder, height: noteRef.current.clientHeight, width: noteRef.current.clientWidth})
+    }
     return(
         // Change Notes Container Size
         // <textarea style = {style.container} ref = {props.noteRef}></textarea>
@@ -77,7 +81,9 @@ const Note = (props) => {
             {/* Note menu */}
             <div style = {styles.noteMenu}>
                 <p style = {styles.menu}
-                    onClick = {() => props.minimizeNote(noteHolder)}
+                    onClick = {() => {
+                        props.minimizeNote(noteHolder)
+                    }}
                 >-</p>
                 {/* Delete Notes Container */}
                 <p style = {styles.menu}
@@ -85,12 +91,13 @@ const Note = (props) => {
                 >x</p>
             </div>
                 
-       
+                    
             <textarea 
                 style={ styles.textArea }
                 ref = {noteRef}
                 value = {noteHolder.content}
                 onChange = {handleChange}
+                onClick = {handleResize}
             ></textarea>
         </div>
     )

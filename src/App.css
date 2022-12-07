@@ -84,5 +84,5 @@ textarea {
 textarea:focus { 
   outline: none !important;
   border-color: black;
-  box-shadow: 0 0 10px rgb(255, 255, 0);
+  box-shadow: 0 0 10px rgb(255, 255, 0); 
 }

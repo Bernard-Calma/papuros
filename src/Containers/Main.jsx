@@ -35,6 +35,12 @@ export const Main = () => {
         }
     }
 
+    const [noteDims, setNoteDims] = useState({
+        // This should hold the dimensions for the note
+        height: 100,
+        width: 100
+    })
+
     // Variables for Notes
     const [notes, setNotes] = useState([])
     
@@ -43,7 +49,9 @@ export const Main = () => {
         setNotes([...notes, {
             id: notes.length + 1,
             content: "",
-            minimized: false
+            minimized: false,
+            width: 100,
+            height: 100,
         }])
     }
 
@@ -96,6 +104,8 @@ export const Main = () => {
                                 key = {note.id}
                                 note = {note}
                                 maxDims = {maxDims}
+                                noteDims = {noteDims}
+                                setNoteDims = {setNoteDims}
                                 removeNote = {()=>removeNote(note.id)}
                                 minimizeNote = {minimizeNote}
                                 updateNote = {updateNote}
