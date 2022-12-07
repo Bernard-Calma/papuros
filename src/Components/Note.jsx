@@ -24,7 +24,7 @@ const Note = (props) => {
             height: 100,
             margin: 10,
             position: "absolute",
-            left: notePosition.left,
+            left: props.note.left,
             top: notePosition.top,
         },
         noteMenu: {
@@ -76,10 +76,11 @@ const Note = (props) => {
         event.preventDefault()
         // console.log("Dragging", event.clientX)
             if (event.screenX === 0) return
+            setNoteHolder({...noteHolder, left: event.clientX})
             setNotePosition({
                 top: event.clientY,
-                left: event.clientX
             })
+            props.updateNote(noteHolder)
             // console.log(containerRef.current.style)
         // onDrag = {(event) => {
         //     event.preventDefault()
@@ -106,7 +107,7 @@ const Note = (props) => {
             onDragEnd = {() => {
                 console.log("window", window.innerWidth)
                 console.log("end drag", containerRef.current.offsetLeft)
-                if (window.innerWidth <= containerRef.current.offsetLeft || window.innerHeight <= containerRef.current.offsetTop) props.minimizeNote(noteHolder)
+                if (window.innerWidth-10 <= containerRef.current.offsetLeft || window.innerHeight-10 <= containerRef.current.offsetTop) props.minimizeNote(noteHolder)
             }}
             >
             {/* Note menu */}
