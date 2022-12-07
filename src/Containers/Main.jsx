@@ -52,7 +52,6 @@ export const Main = () => {
             minimized: false,
             width: 100,
             height: 100,
-            left: notes.length === 0 ? 0 : notes[notes.length - 1].left + notes[notes.length - 1].width
         }])
     }
 
