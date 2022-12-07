@@ -6,6 +6,9 @@ import  BackgroundColor  from "../Components/BackgroundColor"
 const colorList = [
     "white",
     "orange",
+]
+
+const colorListBottom = [
     "gray",
     "violet",
 ]
@@ -24,26 +27,24 @@ const BackgroundColorPicker = (props) => {
             {/* Upper portion of circle */}
             <div className = "halfCircle">
                 {
-                    colorList.map((color, index) => index % 2 === 0 ? 
+                    colorList.map((color, index) => 
                         <BackgroundColor 
                             key = {index}
                             color = {color} 
                             changeBackgroundColor = {() => changeBackgroundColor(color)}
                         />   
-                        :<></>   
                     )
                 }
             </div>
             {/* Lower portion of circle */}
             <div className = "halfCircle">
             {
-                    colorList.map((color, index) => index % 2 === 1 ?
+                    colorListBottom.map((color, index) => 
                         <BackgroundColor 
                             key = {index}
                             color = {color} 
                             changeBackgroundColor = {() => changeBackgroundColor(color)}
                         />
-                        :<></> 
                     )
             }
             </div>

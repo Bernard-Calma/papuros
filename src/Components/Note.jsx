@@ -95,8 +95,16 @@ const Note = (props) => {
         //     event.preventDefault()
         //     console.log("drag")
         // }}
-      
     }
+
+    const handleExceedDrag = () => {
+        console.log(noteHolder)
+        setNoteHolder({...noteHolder, left: 0})
+        props.updateNote(noteHolder)
+        props.minimizeNote(noteHolder)
+        console.log(noteHolder)
+    }
+
     return(
         // Change Notes Container Size
         // <textarea style = {style.container} ref = {props.noteRef}></textarea>
@@ -107,7 +115,7 @@ const Note = (props) => {
             onDragEnd = {() => {
                 console.log("window", window.innerWidth)
                 console.log("end drag", containerRef.current.offsetLeft)
-                if (window.innerWidth-10 <= containerRef.current.offsetLeft || window.innerHeight-10 <= containerRef.current.offsetTop) props.minimizeNote(noteHolder)
+                if (window.innerWidth - 20 <= containerRef.current.offsetLeft || window.innerHeight - 20 <= containerRef.current.offsetTop) handleExceedDrag()
             }}
             >
             {/* Note menu */}

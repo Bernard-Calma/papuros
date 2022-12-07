@@ -47,12 +47,12 @@ export const Main = () => {
     const addNote = () => {
         // Add note , need to change this to more specific ID
         setNotes([...notes, {
-            id: notes.length + 1,
+            id: notes.length === 0 ? 0 : notes.length + 1,
             content: "",
             minimized: false,
             width: 100,
             height: 100,
-            left: notes.length === 0 ? 50 : notes[notes.length - 1].left + notes[notes.length - 1].width
+            left: notes.length === 0 ? 0 : notes[notes.length - 1].left + notes[notes.length - 1].width
         }])
     }
 
@@ -98,9 +98,8 @@ export const Main = () => {
                 />
                 {
                     // Notes List
-                    notes.map((note) => 
+                    notes.map((note) => !note.minimized ?
                         // Notes Container
-                        !note.minimized ?
                             <Note 
                                 key = {note.id}
                                 note = {note}
