@@ -103,7 +103,11 @@ const Note = (props) => {
             ref = {containerRef}
             draggable = {true}
             onDrag = {handleDrag}
-            onDragEnd = {() => {console.log("end drag", containerRef.current.offsetLeft)}}
+            onDragEnd = {() => {
+                console.log("window", window.innerWidth)
+                console.log("end drag", containerRef.current.offsetLeft)
+                if (window.innerWidth <= containerRef.current.offsetLeft || window.innerHeight <= containerRef.current.offsetTop) props.minimizeNote(noteHolder)
+            }}
             >
             {/* Note menu */}
             <div style = {styles.noteMenu}>
