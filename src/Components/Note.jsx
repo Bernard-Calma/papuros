@@ -9,28 +9,23 @@ const Note = (props) => {
     const maxHeight = props.maxDims.height - 20
 
     const noteRef = useRef()
+    const containerRef = useRef()
     
     const [noteHolder , setNoteHolder] = useState(props.note)
+    const [notePosition, setNotePosition] = useState({
+        top: 140,
+        left:20
+    })
 
     const styles = {
-        container: {
-            margin: 5,
-            maxWidth: maxWidth,
-            maxHeight: maxHeight,
-            height: 200,
-            width: 100,
-            borderColor: "black",
-            borderWidth: 3,
-            borderRadius: 20,
-            paddingTop: 5,
-            paddingLeft: 8,
-        },
         noteContainer: {
             borderColor: "black",
             borderWidth: 1,
             height: 100,
             margin: 10,
-
+            position: "absolute",
+            left: notePosition.left,
+            top: notePosition.top,
         },
         noteMenu: {
             display: "flex",
@@ -41,12 +36,14 @@ const Note = (props) => {
             paddingBottom: 5,
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
+
         },
         menu: {
             fontSize: 20,
             fontFamily: "My Soul",
             backgroundColor: "#f2eb11",
             marginTop: 0,
+            
         },
         textArea: {
             backgroundColor: "#f2eb11",
@@ -74,10 +71,40 @@ const Note = (props) => {
     const handleResize = () => {
         setNoteHolder({...noteHolder, height: noteRef.current.clientHeight, width: noteRef.current.clientWidth})
     }
+
+    const handleDrag = (event) => {
+        event.preventDefault()
+        // console.log("Dragging", event.clientX)
+            if (event.screenX === 0) return
+            setNotePosition({
+                top: event.clientY,
+                left: event.clientX
+            })
+            // console.log(containerRef.current.style)
+        // onDrag = {(event) => {
+        //     event.preventDefault()
+        //     console.log("mouse move", event.clientX)
+        //     setNotePosition({
+        //         top: event.clientY -10,
+        //         left: event.clientX - 10
+        //     })
+        // }}
+
+        // onDragStart = {(event) => {
+        //     event.preventDefault()
+        //     console.log("drag")
+        // }}
+      
+    }
     return(
         // Change Notes Container Size
         // <textarea style = {style.container} ref = {props.noteRef}></textarea>
-        <div style={ styles.noteContainer}>
+        <div style={ styles.noteContainer}
+            ref = {containerRef}
+            draggable = {true}
+            onDrag = {handleDrag}
+            onDragEnd = {() => {console.log("end drag", containerRef.current.offsetLeft)}}
+            >
             {/* Note menu */}
             <div style = {styles.noteMenu}>
                 <p style = {styles.menu}
