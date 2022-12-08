@@ -1,7 +1,7 @@
 // Import Styling
 import WebFont from "webfontloader"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import BackgroundColorPicker from "./BackgroundColorPicker"
 import Note from "../Components/Note"
 import NavBar from "./NavBar"
@@ -10,10 +10,6 @@ import NavBar from "./NavBar"
 export const Main = () => {
     // Variables for Styling
     const [backgroundColor, setBackgrounColor] = useState("white")
-    const [maxDims, setMaxDims] = useState({
-        width: window.innerWidth -50,
-        height: window.innerHeight - 150
-    })
     const style = {
         container: {
             // display: "flex",
@@ -24,8 +20,8 @@ export const Main = () => {
             border: "solid"
         },
         mainContainer: {
-            height: maxDims.height,
-            width: maxDims.width,
+            height: window.innerHeight - 150,
+            width: window.innerWidth -50,
             // border: "solid 1px red",
             display: "flex",
             flexWrap: "wrap",
@@ -104,7 +100,6 @@ export const Main = () => {
                             <Note 
                                 key = {index}
                                 note = {note}
-                                maxDims = {maxDims}
                                 noteDims = {noteDims}
                                 setNoteDims = {setNoteDims}
                                 removeNote = {()=>removeNote(note.id)}

@@ -1,13 +1,9 @@
-import { useEffect } from "react"
 import { useState, useRef } from "react"
 import "../App.css"
 
 const Note = (props) => {
     // Fix resize is going overlimit on diagonal
     // Fix whole component to be customized
-    const maxWidth = props.maxDims.width - 10
-    const maxHeight = props.maxDims.height - 20
-
     const noteRef = useRef()
     const containerRef = useRef()
     
@@ -79,15 +75,6 @@ const Note = (props) => {
             if (event.screenX === 0) return
             setNoteHolder({...noteHolder, left: event.clientX, top: event.clientY})
             props.updateNote(noteHolder)
-    }
-
-    const handleExceedDrag = (event) => {
-        // console.log("Before", notePosition)
-        props.updateNote({...noteHolder, left: notePosition.left, top: notePosition.top})
-        props.minimizeNote(noteHolder)
-        setTimeout(() => {
-            console.log("After", noteHolder)
-        }); 
     }
 
     const onDragStart = (event) => {
