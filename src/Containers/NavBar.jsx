@@ -4,8 +4,6 @@ import MinimizedNote from "../Components/MinimizedNote"
 const NavBar = (props) => {
 
     const [showNav , setShowNav] = useState(false)
-    const [minimizedNotes, setMinimizedNotes] = useState(props.notes.map((note) => note.minimized ? note : null))
-
 
     const style = {
         container: {
@@ -57,14 +55,14 @@ const NavBar = (props) => {
                <>
                 <p onClick={addNote}>+</p>
                     {
-                        minimizedNotes.map( (note, index) => 
+                        props.notes.map( (note, index) => 
                             note.minimized ? 
                             <MinimizedNote 
                                 key = {index}
                                 note = {note}
                                 minimizeNote = { () => props.minimizeNote(note)}
                             />
-                            : <></>
+                            : <div key={index}></div>
                         )
                     }
                </>

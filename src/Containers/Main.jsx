@@ -111,7 +111,7 @@ export const Main = () => {
                                 minimizeNote = {minimizeNote}
                                 updateNote = {updateNote}
                             />
-                        : <></>
+                        : <div key={index}> </div>
                     )
                 }
             </div>
