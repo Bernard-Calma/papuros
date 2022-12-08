@@ -12,9 +12,10 @@ const Note = (props) => {
     const containerRef = useRef()
     
     const [noteHolder , setNoteHolder] = useState(props.note)
+    // note position upon clicking before drag
     const [notePosition, setNotePosition] = useState({
         top: 140,
-        left:20
+        left: 0
     })
 
     const styles = {
@@ -25,7 +26,7 @@ const Note = (props) => {
             margin: 10,
             position: "absolute",
             left: props.note.left,
-            top: notePosition.top,
+            top: props.note.top,
         },
         noteMenu: {
             display: "flex",
@@ -65,7 +66,7 @@ const Note = (props) => {
         setNoteHolder({...noteHolder, content: event.target.value, height: noteRef.current.clientHeight, width: noteRef.current.clientWidth})
         // Then call udpate function to update whole array of notes.
         props.updateNote(noteHolder)
-        console.log(props.note)
+        // console.log(props.note)
     }
 
     const handleResize = () => {
@@ -76,34 +77,39 @@ const Note = (props) => {
         event.preventDefault()
         // console.log("Dragging", event.clientX)
             if (event.screenX === 0) return
-            setNoteHolder({...noteHolder, left: event.clientX})
-            setNotePosition({
-                top: event.clientY,
-            })
+            setNoteHolder({...noteHolder, left: event.clientX, top: event.clientY})
             props.updateNote(noteHolder)
-            // console.log(containerRef.current.style)
-        // onDrag = {(event) => {
-        //     event.preventDefault()
-        //     console.log("mouse move", event.clientX)
-        //     setNotePosition({
-        //         top: event.clientY -10,
-        //         left: event.clientX - 10
-        //     })
-        // }}
-
-        // onDragStart = {(event) => {
-        //     event.preventDefault()
-        //     console.log("drag")
-        // }}
     }
 
-    const handleExceedDrag = () => {
-        console.log(noteHolder)
-        setNoteHolder({...noteHolder, left: 0})
-        props.updateNote(noteHolder)
+    const handleExceedDrag = (event) => {
+        // console.log("Before", notePosition)
+        props.updateNote({...noteHolder, left: notePosition.left, top: notePosition.top})
         props.minimizeNote(noteHolder)
-        console.log(noteHolder)
+        setTimeout(() => {
+            console.log("After", noteHolder)
+        }); 
     }
+
+    const onDragStart = (event) => {
+        // console.log("Drag Start" , notePosition)
+        event.dataTransfer.setDragImage(event.target, -10, -10);
+        setNotePosition({left: containerRef.current.offsetLeft - 10, top: containerRef.current.offsetTop - 10})
+    }
+    
+    const handleDragEnd = (event) => {
+        // () => window.innerWidth - 20 <= containerRef.current.offsetLeft || window.innerHeight - 20 <= containerRef.current.offsetTop ? handleExceedDrag() : null
+        // console.log("Drag end", notePosition)
+        if (window.innerWidth - 20 <= containerRef.current.offsetLeft || window.innerHeight - 20 <= containerRef.current.offsetTop) {
+            // console.log("Exceeded")
+            props.updateNote({...noteHolder, left: notePosition.left, top: notePosition.top})
+            props.minimizeNote({...noteHolder, left: notePosition.left, top: notePosition.top})
+            // handleExceedDrag()
+        } else {
+            setNoteHolder({...noteHolder, left: event.clientX, top: event.clientY})
+        }
+        // console.log("After", noteHolder)
+    }
+
 
     return(
         // Change Notes Container Size
@@ -112,11 +118,8 @@ const Note = (props) => {
             ref = {containerRef}
             draggable = {true}
             onDrag = {handleDrag}
-            onDragEnd = {() => {
-                console.log("window", window.innerWidth)
-                console.log("end drag", containerRef.current.offsetLeft)
-                if (window.innerWidth - 20 <= containerRef.current.offsetLeft || window.innerHeight - 20 <= containerRef.current.offsetTop) handleExceedDrag()
-            }}
+            onDragEnd = {handleDragEnd}
+            onDragStart = {onDragStart}
             >
             {/* Note menu */}
             <div style = {styles.noteMenu}>

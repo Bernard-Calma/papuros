@@ -52,6 +52,8 @@ export const Main = () => {
             minimized: false,
             width: 100,
             height: 100,
+            left: 0,
+            top: 100,
         }])
     }
 
@@ -66,7 +68,7 @@ export const Main = () => {
     }
 
     const updateNote = (noteToEdit) => {
-        setNotes(notes.map((note) => note.id === noteToEdit.id ? {...noteToEdit, content: noteToEdit.content} : note))
+        setNotes(notes.map((note) => note.id === noteToEdit.id ? noteToEdit : note))
     }
     
     useEffect(() => {
@@ -97,10 +99,10 @@ export const Main = () => {
                 />
                 {
                     // Notes List
-                    notes.map((note) => !note.minimized ?
+                    notes.map((note, index) => !note.minimized ?
                         // Notes Container
                             <Note 
-                                key = {note.id}
+                                key = {index}
                                 note = {note}
                                 maxDims = {maxDims}
                                 noteDims = {noteDims}
